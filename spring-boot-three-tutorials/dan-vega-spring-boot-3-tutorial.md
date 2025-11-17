@@ -35,3 +35,11 @@ Start a spring project with the <font></font> initializr, with the following cri
     </ol>
 
 ## Action Item 2a
+
+## Module 2: Create your Project
+What is a component?
+
+A class marked with the<font color="#ff9d00">@Component</font> annotation essentially says that this class is available to Spring.  Spring is an inversion-of-control framework, and we flip the onus on Spring to handle classes for us - using the **new** keyword isn't ideal - instead, we can use @Component to tell Spring to use that particular component.  However, Spring won't know about components outside of the default (outside of main) class, which in this case is **dev.danvega.runnerz**.  Creating a class (e.g. WelcomeMessage) in a package, like **foo.bar** in the **java** directory will not enable Spring to use this component.  One workaround is to put this in the default.
+
+## What is the application context?
+The Spring Application Context is a huge container of all the classes in your application, and we can ask the application context for a particular class, (e.g. WelcomeMessage).
