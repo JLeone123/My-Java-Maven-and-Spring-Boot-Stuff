@@ -69,5 +69,34 @@ Package by Feature:
 Everything related to a particular feature is in this package. For example, everything related to a "run" is in a "run" package, and everything related to a "user" is in a "user" package.  These packages can live in the Java world where everything by default is packaged private.
 
 ## Action Item 3a - Document the differences between a class and a record
+Like a class, a record has getters, equals, hashCode, and toString.  The nice thing though is that records are immutable.  There's basically an AllArgs constructor.  The values of the parameters (called record components) can be retrieved but they cannot be set, so the class is immutable!
+
+```java
+package dev.danvega.runnerz.run;
+
+import java.time.LocalDateTime;
+
+public record Run(
+    Integer id,
+    String title,
+    LocalDateTime startedOn,
+    LocalDateTime completedOn,
+    Integer miles,
+    Location location
+) {}
+```
 
 ## Action Item 4a - Define what an enum is
+
+## What is a command line runner?
+A command line runner is something that runs after the application has started and the application context has been created.
+
+```java
+// Creating a command line runner
+	@Bean
+	CommandLineRunner runner() {
+		return args -> {
+			Run run = new Run(1, "First Run", LocalDateTime.now(), LocalDateTime.now().plus(1, ChronoUnit.HOURS), 5, Location.OUTDOOR);
+		};
+	}
+```
