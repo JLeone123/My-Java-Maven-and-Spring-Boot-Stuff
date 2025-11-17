@@ -51,3 +51,23 @@ WelcomeMessage welcomeMessage = (WelcomeMessage) context.getBean("welcomeMessage
 
 ### Tip #1
 When writing code, always make sure it is within the main package of the project. Don't put it outside of the main package or in the default package; because when getting into using Spring's dependency injection and inversion of control, it's not going to work.
+
+## Going over the console
+Logging is configured by Spring out of the box.  SLF4j (Simple Logging Facade For Java) is the default logger in Spring Boot.  The default levels in SLF4J are all, debug, error, fatal, info, off, and trace: https://www.slf4j.org/api/org/apache/log4j/Level.html. To configure them differently than their defaults, there is Spring documentation can be referred to for that here: https://docs.spring.io/spring-boot/reference/features/logging.html#features.logging.log-levels.
+
+Currently, there is no active profile set.  The Devtools are on and enables automatic application restarts and sets sensible defaults, like showing the console for an in-memory H2 database.
+
+## Action Item 2a - After this tutorial, build a weight-lifting API!
+
+## Two popular ways of structuring code are Package by Layer and Package by Feature
+
+### Package by Layer:
+
+In an MVC app, there are controllers, models, services, configurations, repositories, etc.  These are different layers of an application.  The problem with this is type of configuration would have to talk to a controller or service outside of this package, so both the controller and the service would need to be public.
+
+Package by Feature:
+Everything related to a particular feature is in this package. For example, everything related to a "run" is in a "run" package, and everything related to a "user" is in a "user" package.  These packages can live in the Java world where everything by default is packaged private.
+
+## Action Item 3a - Document the differences between a class and a record
+
+## Action Item 4a - Define what an enum is
