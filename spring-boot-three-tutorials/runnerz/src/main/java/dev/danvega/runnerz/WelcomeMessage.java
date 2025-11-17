@@ -1,3 +1,4 @@
+package dev.danvega.runnerz;
 import org.springframework.stereotype.Component;
 
 @Component

@@ -42,4 +42,12 @@ What is a component?
 A class marked with the<font color="#ff9d00">@Component</font> annotation essentially says that this class is available to Spring.  Spring is an inversion-of-control framework, and we flip the onus on Spring to handle classes for us - using the **new** keyword isn't ideal - instead, we can use @Component to tell Spring to use that particular component.  However, Spring won't know about components outside of the default (outside of main) class, which in this case is **dev.danvega.runnerz**.  Creating a class (e.g. WelcomeMessage) in a package, like **foo.bar** in the **java** directory will not enable Spring to use this component.  One workaround is to put this in the default.
 
 ## What is the application context?
-The Spring Application Context is a huge container of all the classes in your application, and we can ask the application context for a particular class, (e.g. WelcomeMessage).
+The Spring Application Context is a huge container of all the classes in your application, and we can ask the application context for a particular class, (e.g. WelcomeMessage). The Spring Application Context can be used to get a particular bean by its name (e.g. welcomeMessage). A **bean** is nothing more than an instance of a class with some metadata around it that the Spring Application Context is managing for me. However, this code will only work if the class is within the main package, which in this case is **dev.danvega.runnerz**.
+
+```java
+ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
+WelcomeMessage welcomeMessage = (WelcomeMessage) context.getBean("welcomeMessage");
+```
+
+### Tip #1
+When writing code, always make sure it is within the main package of the project. Don't put it outside of the main package or in the default package; because when getting into using Spring's dependency injection and inversion of control, it's not going to work.
