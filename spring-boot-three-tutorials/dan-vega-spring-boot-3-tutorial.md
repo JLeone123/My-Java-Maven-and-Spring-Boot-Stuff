@@ -100,3 +100,14 @@ A command line runner is something that runs after the application has started a
 		};
 	}
 ```
+
+## Module 3: REST API
+Spring applications run on embedded Tomcat servers.  In this case, runnerz is running locally on port 8080.
+
+## What is Spring MVC?
+MVC stands for Model View Controller.  A Model is the thing or type going to be worked with, in this case a run. The view is how the thing is going to be represented. In this case, the view is going to be the JSON returned as data containing the run. The controller is the traffic cop of the system: it takes a request, it's going to figure out what needs to be done with it, delegate to some other service to do things, and then return a response. A convention in the Spring world is to give files with controllers their names with "Controller" at the end, like "RunController".
+
+## What are annotations?
+Annotations are things that enable certain behavior on classes, methods, fields, etc., and they are used to cut down on verbosity.
+
+@RestController says that the class it is on is a REST controller, so the response body is expected to be in some form by default - JSON in this case.
