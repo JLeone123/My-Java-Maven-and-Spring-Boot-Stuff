@@ -1,18 +1,22 @@
 # Building web applications in Java with Spring Boot 3 - Tutorial
+
 ## What is the best way to build a Spring project?
+
 The best way to create a Spring project is with the <font color="#6db33f">spring</font> initializr which is found at.
 
 ## What is the project type? What is the build tool?
+
 Examples: Gradle-Groovy, Gradle-Kotlin, Maven
 
 ## Project Metadata
+
 Spring projects have a Group name, an artifact, and a name.
 
 The reverse domain name is typically used.
 
 Example: danvega.dev -> dev.danvega
 
-For this project, the Group will be dev.danvega, the artifact will be runnerz, and the name will be runnerz.  The package name will therefore be dev.danvega.runnerz.
+For this project, the Group will be dev.danvega, the artifact will be runnerz, and the name will be runnerz. The package name will therefore be dev.danvega.runnerz.
 
 A <font color="#ff9d00">groupId</font> indicates the unique identifier of the organization or group that created the project. The groupId is one of the key identifiers of a project and is typically based on the fully qualified domain name of your organization. For example org.apache.maven.plugins is the designated groupId for all Maven plugins.
 
@@ -21,27 +25,31 @@ An <font color="#1099ff">artifactId</font> indicates the unique base name of the
 A <font color="#ff55aa">name</font> indicates the display name used for the project. This is often used in Maven's generated documentation.
 
 ## Action Item 1a
+
 Start a spring project with the <font></font> initializr, with the following criteria:
-    <ol type="a">
-        <li>Project type set to: <strong>Maven</strong></li>
-        <li>Language type set to: <strong>Java</strong></li>
-        <li>Spring Boot version set to: <strong>3.2.3</strong></li>
-        <li>Group set to: <strong>dev.danvega</strong></li>
-        <li>Artifact set to: <strong>runnerz</strong></li>
-        <li>Name set to: <strong>runnerz</strong></li>
-        <li>Packaging set to: <strong>Jar</strong>
-        <li>Java version set to: <strong>21</strong> (or 24 or 25)
-        <li>Dependencies set to: Spring Web and Spring Boot DevTools
-    </ol>
+
+<ol type="a">
+<li>Project type set to: <strong>Maven</strong></li>
+<li>Language type set to: <strong>Java</strong></li>
+<li>Spring Boot version set to: <strong>3.2.3</strong></li>
+<li>Group set to: <strong>dev.danvega</strong></li>
+<li>Artifact set to: <strong>runnerz</strong></li>
+<li>Name set to: <strong>runnerz</strong></li>
+<li>Packaging set to: <strong>Jar</strong>
+<li>Java version set to: <strong>21</strong> (or 24 or 25)
+<li>Dependencies set to: Spring Web and Spring Boot DevTools
+</ol>
 
 ## Action Item 2a
 
 ## Module 2: Create your Project
+
 What is a component?
 
-A class marked with the<font color="#ff9d00">@Component</font> annotation essentially says that this class is available to Spring.  Spring is an inversion-of-control framework, and we flip the onus on Spring to handle classes for us - using the **new** keyword isn't ideal - instead, we can use @Component to tell Spring to use that particular component.  However, Spring won't know about components outside of the default (outside of main) class, which in this case is **dev.danvega.runnerz**.  Creating a class (e.g. WelcomeMessage) in a package, like **foo.bar** in the **java** directory will not enable Spring to use this component.  One workaround is to put this in the default.
+A class marked with the<font color="#ff9d00">@Component</font> annotation essentially says that this class is available to Spring. Spring is an inversion-of-control framework, and we flip the onus on Spring to handle classes for us - using the **new** keyword isn't ideal - instead, we can use @Component to tell Spring to use that particular component. However, Spring won't know about components outside of the default (outside of main) class, which in this case is **dev.danvega.runnerz**. Creating a class (e.g. WelcomeMessage) in a package, like **foo.bar** in the **java** directory will not enable Spring to use this component. One workaround is to put this in the default.
 
 ## What is the application context?
+
 The Spring Application Context is a huge container of all the classes in your application, and we can ask the application context for a particular class, (e.g. WelcomeMessage). The Spring Application Context can be used to get a particular bean by its name (e.g. welcomeMessage). A **bean** is nothing more than an instance of a class with some metadata around it that the Spring Application Context is managing for me. However, this code will only work if the class is within the main package, which in this case is **dev.danvega.runnerz**.
 
 ```java
@@ -50,12 +58,14 @@ WelcomeMessage welcomeMessage = (WelcomeMessage) context.getBean("welcomeMessage
 ```
 
 ### Tip #1
+
 When writing code, always make sure it is within the main package of the project. Don't put it outside of the main package or in the default package; because when getting into using Spring's dependency injection and inversion of control, it's not going to work.
 
 ## Going over the console
-Logging is configured by Spring out of the box.  SLF4j (Simple Logging Facade For Java) is the default logger in Spring Boot.  The default levels in SLF4J are all, debug, error, fatal, info, off, and trace: https://www.slf4j.org/api/org/apache/log4j/Level.html. To configure them differently than their defaults, there is Spring documentation can be referred to for that here: https://docs.spring.io/spring-boot/reference/features/logging.html#features.logging.log-levels.
 
-Currently, there is no active profile set.  The Devtools are on and enables automatic application restarts and sets sensible defaults, like showing the console for an in-memory H2 database.
+Logging is configured by Spring out of the box. SLF4j (Simple Logging Facade For Java) is the default logger in Spring Boot. The default levels in SLF4J are all, debug, error, fatal, info, off, and trace: https://www.slf4j.org/api/org/apache/log4j/Level.html. To configure them differently than their defaults, there is Spring documentation can be referred to for that here: https://docs.spring.io/spring-boot/reference/features/logging.html#features.logging.log-levels.
+
+Currently, there is no active profile set. The Devtools are on and enables automatic application restarts and sets sensible defaults, like showing the console for an in-memory H2 database.
 
 ## Action Item 2a - After this tutorial, build a weight-lifting API!
 
@@ -63,13 +73,14 @@ Currently, there is no active profile set.  The Devtools are on and enables auto
 
 ### Package by Layer:
 
-In an MVC app, there are controllers, models, services, configurations, repositories, etc.  These are different layers of an application.  The problem with this is type of configuration would have to talk to a controller or service outside of this package, so both the controller and the service would need to be public.
+In an MVC app, there are controllers, models, services, configurations, repositories, etc. These are different layers of an application. The problem with this is type of configuration would have to talk to a controller or service outside of this package, so both the controller and the service would need to be public.
 
 Package by Feature:
-Everything related to a particular feature is in this package. For example, everything related to a "run" is in a "run" package, and everything related to a "user" is in a "user" package.  These packages can live in the Java world where everything by default is packaged private.
+Everything related to a particular feature is in this package. For example, everything related to a "run" is in a "run" package, and everything related to a "user" is in a "user" package. These packages can live in the Java world where everything by default is packaged private.
 
 ## Action Item 3a - Document the differences between a class and a record
-Like a class, a record has getters, equals, hashCode, and toString.  The nice thing though is that records are immutable.  There's basically an AllArgs constructor.  The values of the parameters (called record components) can be retrieved but they cannot be set, so the class is immutable!
+
+Like a class, a record has getters, equals, hashCode, and toString. The nice thing though is that records are immutable. There's basically an AllArgs constructor. The values of the parameters (called record components) can be retrieved but they cannot be set, so the class is immutable!
 
 ```java
 package dev.danvega.runnerz.run;
@@ -89,6 +100,7 @@ public record Run(
 ## Action Item 4a - Define what an enum is
 
 ## What is a command line runner?
+
 A command line runner is something that runs after the application has started and the application context has been created.
 
 ```java
@@ -102,12 +114,25 @@ A command line runner is something that runs after the application has started a
 ```
 
 ## Module 3: REST API
-Spring applications run on embedded Tomcat servers.  In this case, runnerz is running locally on port 8080.
+
+Spring applications run on embedded Tomcat servers. In this case, runnerz is running locally on port 8080.
 
 ## What is Spring MVC?
-MVC stands for Model View Controller.  A Model is the thing or type going to be worked with, in this case a run. The view is how the thing is going to be represented. In this case, the view is going to be the JSON returned as data containing the run. The controller is the traffic cop of the system: it takes a request, it's going to figure out what needs to be done with it, delegate to some other service to do things, and then return a response. A convention in the Spring world is to give files with controllers their names with "Controller" at the end, like "RunController".
+
+MVC stands for Model View Controller. A Model is the thing or type going to be worked with, in this case a run. The view is how the thing is going to be represented. In this case, the view is going to be the JSON returned as data containing the run. The controller is the traffic cop of the system: it takes a request, it's going to figure out what needs to be done with it, delegate to some other service to do things, and then return a response. A convention in the Spring world is to give files with controllers their names with "Controller" at the end, like "RunController".
 
 ## What are annotations?
+
 Annotations are things that enable certain behavior on classes, methods, fields, etc., and they are used to cut down on verbosity.
 
 @RestController says that the class it is on is a REST controller, so the response body is expected to be in some form by default - JSON in this case.
+
+http :8080/api/runs
+
+chmod a+x <executable_name>
+
+If there is no verbose log after a bad request, then DevTools might not be on the class path
+
+DevTools sends sensible defaults!
+
+Spring is a convention over configuration framework meaning if nothing is there it will configure something for you. Your own properties can be created as well.
