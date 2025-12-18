@@ -18,8 +18,8 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/runs")
-public class RunController {    
-    
+public class RunController {
+
     private final RunRepository runRepository;
 
     // implicit @Autowired annotation
