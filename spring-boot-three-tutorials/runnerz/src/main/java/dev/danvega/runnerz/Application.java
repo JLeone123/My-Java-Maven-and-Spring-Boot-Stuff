@@ -16,18 +16,19 @@ import dev.danvega.runnerz.run.Run;
 @SpringBootApplication
 public class Application {
 
-	private static final Logger log = LoggerFactory.getLogger(Application.class);
+    private static final Logger log = LoggerFactory.getLogger(Application.class);
 
-	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
 
-	// Creating a command line runner
-	@Bean
-	CommandLineRunner runner() {
-		return args -> {
-			Run run = new Run(1, "First Run", LocalDateTime.now(), LocalDateTime.now().plus(1, ChronoUnit.HOURS), 5, Location.OUTDOOR);
-			log.info("Run: " + run); // toString is automatically called
-		};
-	}
+    // Creating a command line runner
+    @Bean
+    CommandLineRunner runner() {
+        return args -> {
+            Run run = new Run(1, "First Run", LocalDateTime.now(), LocalDateTime.now().plus(1, ChronoUnit.HOURS), 5,
+                    Location.OUTDOOR);
+            log.info("Run: " + run); // toString is automatically called
+        };
+    }
 }
